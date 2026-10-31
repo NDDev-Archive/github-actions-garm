@@ -30,7 +30,13 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: go.mod
-          cache: true
+          # setup-go's cache saves from pull requests and shares one key between jobs
+          # that build differently; hosted-cache restores everywhere, saves from main.
+          cache: false
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+        with:
+          ecosystems: go
+          key: changes
       - name: Resolve the provider's compiled package set
         id: packages
         run: |
@@ -103,7 +109,13 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: go.mod
-          cache: true
+          # setup-go's cache saves from pull requests and shares one key between jobs
+          # that build differently; hosted-cache restores everywhere, saves from main.
+          cache: false
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+        with:
+          ecosystems: go
+          key: test
       - run: go mod download
       - run: go mod verify
       - run: go test ./...
@@ -121,7 +133,13 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: go.mod
-          cache: true
+          # setup-go's cache saves from pull requests and shares one key between jobs
+          # that build differently; hosted-cache restores everywhere, saves from main.
+          cache: false
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+        with:
+          ecosystems: go
+          key: race
       - run: go test -race ./...
 
   static:
@@ -135,7 +153,13 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: go.mod
-          cache: true
+          # setup-go's cache saves from pull requests and shares one key between jobs
+          # that build differently; hosted-cache restores everywhere, saves from main.
+          cache: false
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+        with:
+          ecosystems: go
+          key: static
       - run: test -z "$(gofmt -l cmd internal third_party)"
       - run: go vet ./...
       - run: go vet -C internal/incusplacement/starlarkexec ./...
@@ -168,7 +192,13 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: go.mod
-          cache: true
+          # setup-go's cache saves from pull requests and shares one key between jobs
+          # that build differently; hosted-cache restores everywhere, saves from main.
+          cache: false
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+        with:
+          ecosystems: go
+          key: provider
       - name: Resolve validated artifact identity
         id: release
         run: |
