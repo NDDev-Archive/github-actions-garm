@@ -1,0 +1,18 @@
+# Reviewed historical Gitleaks findings: each fingerprint is a proven false positive
+# (STD-0004 R-0015). Values are not reproduced here.
+# Unresolved for owner review, deliberately NOT ignored: the AWS-format access key ID
+# used as a test fixture in internal/cachebroker/cachebroker_test.go (lines 134, 645, 717)
+# and internal/garmproviderincus/provider/cache_delivery_test.go:30.
+
+# Credential zeroization: clearDelivery assigns the empty string to SecretKeyB64.
+eada9d64e9dc063a9e726e84eb95c2b4e4868e9f:internal/cachebroker/handler.go:generic-api-key:212
+# key_sha256 is the 64-hex SHA-256 digest pinning the GitHub App key, a one-way anchor, not a key.
+468bd522c52edaccc230b9b664723fead4f10447:config/garm-credential-anchor.json:generic-api-key:6
+# Same digest anchor for the guild fleet credential.
+468bd522c52edaccc230b9b664723fead4f10447:config/garm-credential-anchor-guild.json:generic-api-key:6
+# Same digest anchor for the example-media fleet credential.
+468bd522c52edaccc230b9b664723fead4f10447:config/garm-credential-anchor-myattention.json:generic-api-key:6
+# Test expectation for the anchor description: app 100001, installation 200001 and a key-sha256 digest.
+468bd522c52edaccc230b9b664723fead4f10447:internal/garmbootstrap/reconcile_test.go:generic-api-key:287
+# go.sum line in a vendoring patch: golang.org/x/oauth2 v0.36.0 h1 hash, identical to sum.golang.org.
+dbaa4acba51105991866150d940183afa8acfb60:third_party/garm/patches/0036-refresh-vendored-go-dependencies.patch:generic-api-key:72
