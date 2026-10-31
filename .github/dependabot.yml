@@ -17,6 +17,8 @@ updates:
         update-types:
           - minor
           - patch
+    cooldown:
+      default-days: 7
 
   # internal/incusplacement/starlarkexec is a nested module that requires the
   # root module, so the root's dependency graph moving is enough to leave its
@@ -34,6 +36,8 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: github-actions
     directory: /
@@ -45,6 +49,8 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
+    cooldown:
+      default-days: 7
 
   # The benchmark fixture is a real npm dependency tree, and nothing watched it.
   # `next` sat at 16.3.0 through two critical advisories — unauthenticated RCE
@@ -62,3 +68,5 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
+    cooldown:
+      default-days: 7
