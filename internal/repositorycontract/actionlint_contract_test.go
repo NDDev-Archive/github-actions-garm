@@ -9,6 +9,15 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// githubHostedLabelsActionlintPredates are GitHub-hosted images this
+// repository's workflows name that the pinned actionlint does not know yet
+// (rhysd/actionlint#682). GitHub serves them, not the fleet, so they are the
+// only labels allowed beside the published classes.
+var githubHostedLabelsActionlintPredates = map[string]bool{
+	"ubuntu-26.04":     true,
+	"ubuntu-26.04-arm": true,
+}
+
 // Actionlint's runner vocabulary is a public API: a missing label makes a
 // published class unusable, while an extra label lets workflows request a
 // class the fleet can never serve. Hold both directions to one authority.
@@ -26,7 +35,12 @@ func TestActionlintLabelsExactlyMatchPublishedClasses(t *testing.T) {
 	if err := yaml.Unmarshal(raw, &config); err != nil {
 		t.Fatal(err)
 	}
-	declared := append([]string(nil), config.SelfHostedRunner.Labels...)
+	declared := make([]string, 0, len(config.SelfHostedRunner.Labels))
+	for _, label := range config.SelfHostedRunner.Labels {
+		if !githubHostedLabelsActionlintPredates[label] {
+			declared = append(declared, label)
+		}
+	}
 	wanted := make([]string, 0, len(garmbootstrap.PublishedScaleSets()))
 	for _, class := range garmbootstrap.PublishedScaleSets() {
 		wanted = append(wanted, class.Name)
