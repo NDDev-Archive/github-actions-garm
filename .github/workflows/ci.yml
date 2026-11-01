@@ -33,7 +33,7 @@ jobs:
           # setup-go's cache saves from pull requests and shares one key between jobs
           # that build differently; hosted-cache restores everywhere, saves from main.
           cache: false
-      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@c192c6adcf22088abf456635de614d42e8fa3f8d # nddev-cicd-v0.6.20
         with:
           ecosystems: go
           key: changes
@@ -112,7 +112,7 @@ jobs:
           # setup-go's cache saves from pull requests and shares one key between jobs
           # that build differently; hosted-cache restores everywhere, saves from main.
           cache: false
-      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@c192c6adcf22088abf456635de614d42e8fa3f8d # nddev-cicd-v0.6.20
         with:
           ecosystems: go
           key: test
@@ -136,7 +136,7 @@ jobs:
           # setup-go's cache saves from pull requests and shares one key between jobs
           # that build differently; hosted-cache restores everywhere, saves from main.
           cache: false
-      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@c192c6adcf22088abf456635de614d42e8fa3f8d # nddev-cicd-v0.6.20
         with:
           ecosystems: go
           key: race
@@ -156,7 +156,7 @@ jobs:
           # setup-go's cache saves from pull requests and shares one key between jobs
           # that build differently; hosted-cache restores everywhere, saves from main.
           cache: false
-      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@c192c6adcf22088abf456635de614d42e8fa3f8d # nddev-cicd-v0.6.20
         with:
           ecosystems: go
           key: static
@@ -195,7 +195,7 @@ jobs:
           # setup-go's cache saves from pull requests and shares one key between jobs
           # that build differently; hosted-cache restores everywhere, saves from main.
           cache: false
-      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@365415f32190ae22ff22462e791a4829ad6e91fc # nddev-cicd-v0.6.16
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/hosted-cache@c192c6adcf22088abf456635de614d42e8fa3f8d # nddev-cicd-v0.6.20
         with:
           ecosystems: go
           key: provider
@@ -311,7 +311,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/tools@ab62f45b2a3067e5a7425d703f7fd07f1618b72c # nddev-cicd-v0.6.14
+      - uses: NDDev-Technocracy-Standarts/std-0004-ci-cd-workflows/.github/actions/tools@c192c6adcf22088abf456635de614d42e8fa3f8d # nddev-cicd-v0.6.20
         with:
           capability: security
       - name: Lint and audit workflows
