@@ -1,8 +1,5 @@
 # Reviewed historical Gitleaks findings: each fingerprint is a proven false positive
 # (STD-0004 R-0015). Values are not reproduced here.
-# Unresolved for owner review, deliberately NOT ignored: the AWS-format access key ID
-# used as a test fixture in internal/cachebroker/cachebroker_test.go (lines 134, 645, 717)
-# and internal/garmproviderincus/provider/cache_delivery_test.go:30.
 
 # Credential zeroization: clearDelivery assigns the empty string to SecretKeyB64.
 eada9d64e9dc063a9e726e84eb95c2b4e4868e9f:internal/cachebroker/handler.go:generic-api-key:212
@@ -16,3 +13,13 @@ eada9d64e9dc063a9e726e84eb95c2b4e4868e9f:internal/cachebroker/handler.go:generic
 468bd522c52edaccc230b9b664723fead4f10447:internal/garmbootstrap/reconcile_test.go:generic-api-key:287
 # go.sum line in a vendoring patch: golang.org/x/oauth2 v0.36.0 h1 hash, identical to sum.golang.org.
 dbaa4acba51105991866150d940183afa8acfb60:third_party/garm/patches/0036-refresh-vendored-go-dependencies.patch:generic-api-key:72
+# Test fixture access key: AKIA plus the hex alphabet 0-9A-F in order, paired with a
+# 64-char repeated filler secret and RFC 5737 TEST-NET endpoints. It holds 0, 1, 8 and 9,
+# outside the base32 alphabet [A-Z2-7] every AWS key ID uses, so it cannot be one.
+eada9d64e9dc063a9e726e84eb95c2b4e4868e9f:internal/cachebroker/cachebroker_test.go:generic-api-key:134
+# Same placeholder access key in the layer-cache broker test.
+8fc613c02c3a8e1bce5967f37978d7ca16a64f8b:internal/cachebroker/cachebroker_test.go:generic-api-key:645
+# Same placeholder access key in the second layer-cache broker test.
+8fc613c02c3a8e1bce5967f37978d7ca16a64f8b:internal/cachebroker/cachebroker_test.go:generic-api-key:717
+# Same placeholder access key in the Incus provider cache-delivery fixture.
+468bd522c52edaccc230b9b664723fead4f10447:internal/garmproviderincus/provider/cache_delivery_test.go:generic-api-key:30
